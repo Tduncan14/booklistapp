@@ -43,6 +43,12 @@ class UI {
       list.appendChild(row);
    }
 
+   static showAlert(message){
+       const div = document.createElement('div');
+
+       
+   }
+
    static deleteBook(el){
        if(el.classList.contains('delete')){
            el.parentElement.parentElement.remove();
@@ -64,13 +70,24 @@ class UI {
  // envent add a book
 
  document.querySelector('#book-form').addEventListener('submit',(e) =>{
-     e.preventDefault();
+    // Prevent actual submit
+    e.preventDefault();
+
+  // Get form values
     const title = document.querySelector('#title').value;
 
     const author = document.querySelector('#author').value;
 
     const isbn = document.querySelector('#ISBN').value;
 
+   //Validate
+   if(title =='' || author == '' || isbn == '' ){
+     alert('Please fill in all fields');
+
+   }
+
+   else{
+       
     // Instatiate Book instance of a book
     const book = new Book(title,author,isbn);
 
@@ -82,6 +99,10 @@ class UI {
     // A method that is called clear fields
 
     UI.clearFields();
+
+   }
+
+
 
  });
 
